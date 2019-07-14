@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PlayerCharacter : MonoBehaviour
 {
     public int hp;
@@ -17,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour
     public Transform bulletPosL;
     public Transform bulletPosR;
     public float shotSpeed;
+    public GameObject ship;
     int power;
     public AudioClip bulletSound;
     AudioSource bulletAudio;
@@ -144,8 +145,12 @@ public class PlayerCharacter : MonoBehaviour
         // Enemy Collider
         if(col.gameObject.tag == "enemy")
         {
-            if( hp < 0 )
+            if( hp < 0)
+            {
                 Destroy(gameObject);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
         }
     }
 }
