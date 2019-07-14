@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public int hp;
+    public int score;
+    int highScore;
+    public Text scoreText;
+    public Text highScoreText;
     public float movementSpeed;
     public MapLimits limits;
     public GameObject bullet;
@@ -17,8 +23,17 @@ public class PlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         power = 1;
         bulletAudio = GetComponent<AudioSource>();
+
+        if (!PlayerPrefs.HasKey("highScore"))
+        {
+            highScore = 0;
+            PlayerPrefs.SetInt("highScore", highScore);
+        }
+        
+
     }
 
     // Update is called once per frame
@@ -26,6 +41,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         Movement();
         Shooting();
+        scoreText.text = score.ToString();
+        highScoreText.text = PlayerPrefs.GetInt("highScore").ToString();
+
+        if (score > highScore) {
+            highScore = score;
+            PlayerPrefs.SetInt("highScore", score);
+        }
     }
 
     //Movements
@@ -105,16 +127,25 @@ public class PlayerCharacter : MonoBehaviour
     // Collider TRIGGER
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "powerUp" && power < 3)
+        if(col.gameObject.tag == "powerUp" )
         {
-            power++;
+            if( power < 3)
+                power++;
             Destroy(col.gameObject);
         }
 
-        if(col.gameObject.tag == "powerDown" && power > 1)
+        if(col.gameObject.tag == "powerDown" )
         {
-            power--;
+            if (power > 1)
+                power--;
             Destroy(col.gameObject);
+        }
+
+        // Enemy Collider
+        if(col.gameObject.tag == "enemy")
+        {
+            if( hp < 0 )
+                Destroy(gameObject);
         }
     }
 }

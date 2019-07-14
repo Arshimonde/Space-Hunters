@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3094169510088946221}
   - component: {fileID: 7506984618777966937}
   - component: {fileID: 2446260277592703393}
+  - component: {fileID: 7014454954768630677}
+  - component: {fileID: 7110756310861160764}
   m_Layer: 0
   m_Name: Invader3
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094169510089174541}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.991027, y: 1, z: 6.3267975}
+  m_LocalPosition: {x: 10.991027, y: 1, z: -0.43}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 3094169510088946223}
@@ -41,11 +43,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094169510089174541}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 31.957453, y: 7.1016436, z: 19.671139}
-  m_Center: {x: -0.098980665, y: 6.5288563, z: -2.0663438}
+  m_Size: {x: 31.957453, y: 17.6176, z: 19.671139}
+  m_Center: {x: -0.098980665, y: 8.43253, z: -2.0663438}
 --- !u!54 &2446260277592703393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62,6 +64,47 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &7014454954768630677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094169510089174541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c10a5c0bc7539640ac1a1f6776eeaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 80
+  changeTimer: 4
+  scoreReward: 15
+  powerUp: {fileID: 8952849155660893203, guid: 0441835518279224aa2a8c9c9c87b895, type: 3}
+  powerDown: {fileID: 6897255678206477936, guid: 56934a833e59bd34c91e19515fb8d2f2,
+    type: 3}
+  isDirectionSwitch: 0
+  hp: 5
+  particles: {fileID: 3342188218852765322, guid: 083f09893f4d32342ae7a2c91b287b7c,
+    type: 3}
+  limits:
+    minimumX: -16
+    maximumX: 16
+    minimumY: -20
+    maximumY: 14
+--- !u!114 &7110756310861160764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094169510089174541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4a682592b65c04fa90d371b6c11da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 15
+  particles: {fileID: 0}
 --- !u!1 &3094169510089174543
 GameObject:
   m_ObjectHideFlags: 0
